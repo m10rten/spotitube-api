@@ -13,6 +13,7 @@
         <maven.compiler.source>12</maven.compiler.source>
         <maven.compiler.target>12</maven.compiler.target>
         <failOnMissingWebXml>false</failOnMissingWebXml>
+        <db.properties>src/main/resources/db.properties</db.properties>
     </properties>
     <dependencies>
         <dependency>
@@ -42,6 +43,10 @@
             <artifactId>json</artifactId>
             <version>20211205</version>
         </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.10</version>
+        </dependency>
     </dependencies>
-
 </project>
