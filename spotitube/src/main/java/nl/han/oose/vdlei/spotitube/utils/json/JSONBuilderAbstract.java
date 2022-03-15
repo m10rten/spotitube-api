@@ -1,9 +1,8 @@
 package nl.han.oose.vdlei.spotitube.utils.json;
 
-import com.google.gson.JsonElement;
 import org.json.JSONObject;
 
-public abstract class JSONBuilder {
+public abstract class JSONBuilderAbstract {
   private String json = null;
   private Object pojo = null;
 

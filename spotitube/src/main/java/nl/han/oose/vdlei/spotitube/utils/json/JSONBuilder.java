@@ -1,20 +1,17 @@
 package nl.han.oose.vdlei.spotitube.utils.json;
 
-import nl.han.oose.vdlei.spotitube.Person;
-import nl.han.oose.vdlei.spotitube.domain.login.data.LoginEntity;
 import org.json.JSONObject;
 
-public class LoginJSONBuilder {
-  private Object pojo;
-  private String json;
+public class JSONBuilder {
+  private final Object pojo;
 
-  public LoginJSONBuilder(JSONEntity obj){
+  public JSONBuilder(JSONEntity obj){
     this.pojo = obj;
   };
 
   public String build () {
     JSONObject jsonObj = new JSONObject(pojo);
-    this.json = jsonObj.toString();
-    return this.json;
+    String json = jsonObj.toString();
+    return json;
   };
 }
