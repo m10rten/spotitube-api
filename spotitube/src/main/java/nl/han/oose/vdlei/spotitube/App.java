@@ -1,17 +1,22 @@
 package nl.han.oose.vdlei.spotitube;
 
-import nl.han.oose.vdlei.spotitube.utils.LoginJSONBuilder;
-import org.json.JSONObject;
-
-import java.util.HashMap;
+import nl.han.oose.vdlei.spotitube.utils.json.JSONBuilder;
 
 public class App {
   public static void main(String[] args) {
-    Person person = new Person();
-    person.setName( "Person Name" );
-    person.setAge( 333 );
+    Person parent = new Person();
+    parent.setAge(28);
+    parent.setName("parent");
 
-    JSONObject jsonObj = new JSONObject( person );
-    System.out.println( jsonObj );
+    Person child = new Person();
+    child.setAge(2);
+    child.setName("child");
+    Person child2 = new Person();
+    child2.setAge(3);
+    child2.setName("child2");
+    parent.addChild(child);
+    parent.addChild(child2);
+
+    System.out.println(parent.toJson());
   }
 }
