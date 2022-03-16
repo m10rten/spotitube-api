@@ -1,7 +1,13 @@
 package nl.han.oose.vdlei.spotitube;
 
+import nl.han.oose.vdlei.spotitube.utils.hash.HashMethodes;
 import nl.han.oose.vdlei.spotitube.utils.json.JSONBuilder;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.core.Response;
+
+//@Path("/")
 public class App {
   public static void main(String[] args) {
     Person parent = new Person();
@@ -18,5 +24,11 @@ public class App {
     parent.addChild(child2);
 
     System.out.println(parent.toJson());
+
   }
+
+//  @GET
+//  public Response index(){
+//    return Response.status(Response.Status.OK).entity("Up and Running: Tomee Spotitube API.").build();
+//  }
 }

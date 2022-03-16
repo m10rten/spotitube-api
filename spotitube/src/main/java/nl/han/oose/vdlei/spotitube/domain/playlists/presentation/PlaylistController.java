@@ -1,5 +1,6 @@
 package nl.han.oose.vdlei.spotitube.domain.playlists.presentation;
 
+import nl.han.oose.vdlei.spotitube.domain.impl.service.PlaylistServiceImpl;
 import nl.han.oose.vdlei.spotitube.domain.playlists.service.PlaylistService;
 
 import javax.inject.Inject;
@@ -10,7 +11,7 @@ import javax.ws.rs.core.Response;
 @Path("/playlists")
 public class PlaylistController {
     @Inject
-    PlaylistService playlistService;
+    PlaylistServiceImpl playlistService;
 
     @Path("/")
     @GET

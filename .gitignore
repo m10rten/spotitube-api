@@ -2,3 +2,5 @@
 spotitube/.idea
 */target
 *.properties
+.idea
+spotitube/.idea

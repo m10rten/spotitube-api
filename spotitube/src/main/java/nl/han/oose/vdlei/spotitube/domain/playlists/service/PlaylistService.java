@@ -4,9 +4,6 @@ import nl.han.oose.vdlei.spotitube.domain.playlists.presentation.PlaylistRespons
 
 import javax.inject.Inject;
 
-public class PlaylistService {
-    public static PlaylistResponse findPlaylists(String token) {
-        PlaylistResponse response = new PlaylistResponse();
-        return response;
-    }
+public interface PlaylistService {
+    PlaylistResponse findPlaylists(String token);
 }

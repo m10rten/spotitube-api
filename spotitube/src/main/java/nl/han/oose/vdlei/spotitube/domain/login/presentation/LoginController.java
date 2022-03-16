@@ -1,6 +1,6 @@
 package nl.han.oose.vdlei.spotitube.domain.login.presentation;
 
-import nl.han.oose.vdlei.spotitube.domain.login.service.LoginService;
+import nl.han.oose.vdlei.spotitube.domain.impl.service.LoginServiceImpl;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -13,7 +13,7 @@ import javax.ws.rs.core.Response;
 @Path("/login")
 public class LoginController {
   @Inject
-  LoginService loginService;
+  LoginServiceImpl loginService;
 
   @Path("/")
   @POST

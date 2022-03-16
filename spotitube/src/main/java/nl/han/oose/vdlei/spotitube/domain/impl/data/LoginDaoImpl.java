@@ -11,7 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class LoginDoaImpl implements LoginDao {
+public class LoginDaoImpl implements LoginDao {
   @Inject
   private HashMethodes hasher;
   @Override

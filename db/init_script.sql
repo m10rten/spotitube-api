@@ -2,8 +2,8 @@
 CREATE DATABASE spotitube_api_db
 USE spotitube_api_db
 
-CREATE DATABASE spotitube_db
-USE spotitube_db
+--CREATE DATABASE spotitube_db
+--USE spotitube_db
 DROP TABLE IF EXISTS Users;
 CREATE TABLE Users (
 	UserId int IDENTITY(1,1),
@@ -49,8 +49,28 @@ CREATE TABLE Tracks (
 	PRIMARY KEY (TrackId),
 );
 
-INSERT INTO Users (UserName, UserFull, UserPassword, UserToken) VALUES ('meron','Meron Brouwer','4a76c706eeb50a6ed472923fd39eb33332a37e8b676f68f891d60cee7e9800b3', '1234-1523-6665-1298')
+INSERT INTO Users (UserName, UserFull, UserPassword, UserToken) 
+	VALUES ('meron','Meron Brouwer','4a76c706eeb50a6ed472923fd39eb33332a37e8b676f68f891d60cee7e9800b3', 
+			'1234-1523-6665-1298')
+
+INSERT INTO Users (UserName, UserFull, UserPassword, UserToken)
+	VALUES ('Morty','Morty','3762441e8688f8693e82ef7b7da8e329eb47ce70b14eaa9805c3daa4933e45ae', 
+			'1234-1523-6665-1234')
+
+INSERT INTO Tracks (TrackTitle, TrackAlbum, TrackDuration, TrackDescription, TrackPerformer, 
+					TrackPublicationDate, TrackOfflineAvailable) 
+	VALUES ('Look at Me!', 'Revenge', 127, 
+			'Look at my Wrist, about ten Aye',
+			'XXXTENTACION', '18-6-2018', 1);
+
+INSERT INTO Tracks (TrackTitle, TrackAlbum, TrackDuration, TrackDescription, TrackPerformer, 
+					TrackPublicationDate, TrackOfflineAvailable) 
+	VALUES ('Hope', '?', 110, 
+			'Hope by xxxtentacion',
+			'XXXTENTACION', '18-6-2018', 0);
 -- INSERT INTO Users (UserName, UserFull, UserPassword, UserToken) VALUES ('meron','Meron Brouwer','4a76c706eeb50a6ed472923fd39eb33332a37e8b676f68f891d60cee7e9800b3', '1234-1523-6665-1298')
 
 SELECT * FROM Users;
+SELECT * FROM Tracks;
+-- mortypassword
 -- MySuperSecretPassword12341
