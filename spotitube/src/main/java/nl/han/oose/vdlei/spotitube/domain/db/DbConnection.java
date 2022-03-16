@@ -9,7 +9,7 @@ import java.sql.*;
 import java.util.Properties;
 
 public class DbConnection {
-  private String database = "spotitube_api_db";
+  private String database;
   private Properties properties = new Properties();
 //  private java.net.URL fileUrl;
   private String userName;
@@ -27,6 +27,7 @@ public class DbConnection {
 //      properties.load(fileUrl);
 //      properties.load(new URL("file:///resources/db.properties").openConnection().getInputStream());
       properties.load(getClass().getClassLoader().getResourceAsStream("db.properties"));
+      this.database = properties.getProperty("db_name");
       this.userName = properties.getProperty("db_user");
       this.password = properties.getProperty("db_password");
 //      System.out.println(userName);

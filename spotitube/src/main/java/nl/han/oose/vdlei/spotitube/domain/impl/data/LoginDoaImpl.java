@@ -13,7 +13,7 @@ import java.sql.SQLException;
 
 public class LoginDoaImpl implements LoginDao {
   @Inject
-  HashMethodes hasher;
+  private HashMethodes hasher;
   @Override
   public LoginEntity getUserDetails(String userName, String password) {
     LoginEntity user = new LoginEntity();
@@ -28,7 +28,7 @@ public class LoginDoaImpl implements LoginDao {
       }
       user.setUser(result.getString("UserFull"));
       user.setToken(result.getString("UserToken"));
-
+      conn.close();
     } catch (SQLException e){
       e.printStackTrace();
     }
