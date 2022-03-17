@@ -28,8 +28,8 @@ public class PlaylistController {
             PlaylistResponse playlistResponse = playlistService.findAllPlaylists(token);
             return Response.status(Response.Status.OK).entity(playlistResponse).build();
         } catch (NotAuthorizedException e) {
-            System.out.println(e.getMessage());
-          return Response.status(Response.Status.FORBIDDEN).entity(e).build();
+            e.printStackTrace();
+            return Response.status(Response.Status.FORBIDDEN).entity(e.getMessage()).build();
         }
     }
 }
