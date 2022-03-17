@@ -5,5 +5,5 @@ import nl.han.oose.vdlei.spotitube.domain.playlists.presentation.PlaylistRespons
 import javax.inject.Inject;
 
 public interface PlaylistService {
-    PlaylistResponse findPlaylists(String token);
+    PlaylistResponse findAllPlaylists(String token);
 }

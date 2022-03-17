@@ -1,4 +1,4 @@
-package nl.han.oose.vdlei.spotitube.domain.login.presentation;
+package nl.han.oose.vdlei.spotitube.domain.user.presentation;
 
 public class LoginRequest {
   private String user;

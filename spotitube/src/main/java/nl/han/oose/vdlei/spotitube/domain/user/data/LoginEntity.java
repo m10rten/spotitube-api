@@ -1,4 +1,4 @@
-package nl.han.oose.vdlei.spotitube.domain.login.data;
+package nl.han.oose.vdlei.spotitube.domain.user.data;
 
 import nl.han.oose.vdlei.spotitube.utils.json.JSONBuilder;
 import nl.han.oose.vdlei.spotitube.utils.json.JSONEntity;

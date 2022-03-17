@@ -1,26 +1,26 @@
 package nl.han.oose.vdlei.spotitube.domain.playlists.presentation;
 
-import javax.ws.rs.core.Response;
+import nl.han.oose.vdlei.spotitube.domain.playlists.data.PlaylistEntity;
+
+import java.util.ArrayList;
 
 public class PlaylistResponse {
-    private String json;
-    private Response.Status status = Response.Status.NOT_FOUND;
+    private int length;
+    private ArrayList<PlaylistEntity> playlists = new ArrayList<PlaylistEntity>();
 
-    public void setJson(String json) {
-        this.json = json;
+    public void setLength(int length) {
+        this.length = length;
     }
-
-    public void setStatus(Response.Status status) {
-        this.status = status;
+    public int getLength() {
+        return length;
     }
-
-    public String getJson() {
-        return json;
+    public void addLength(int length){
+        length += length;
     }
-
-    public Response.Status getStatus() {
-        return status;
+    public ArrayList<PlaylistEntity> getPlaylists() {
+        return playlists;
     }
-
-
+    public void addPlaylist(PlaylistEntity playlist) {
+        playlists.add(playlist);
+    }
 }

@@ -1,17 +1,18 @@
 package nl.han.oose.vdlei.spotitube.domain.impl.data;
 
-import nl.han.oose.vdlei.spotitube.domain.login.data.LoginDao;
-import nl.han.oose.vdlei.spotitube.domain.login.data.LoginEntity;
+import nl.han.oose.vdlei.spotitube.domain.user.data.UserDao;
+import nl.han.oose.vdlei.spotitube.domain.user.data.LoginEntity;
 import nl.han.oose.vdlei.spotitube.domain.db.DbConnection;
 import nl.han.oose.vdlei.spotitube.utils.hash.HashMethodes;
 
 import javax.inject.Inject;
+import javax.ws.rs.NotAuthorizedException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class LoginDaoImpl implements LoginDao {
+public class UserDaoImpl implements UserDao {
   @Inject
   private HashMethodes hasher;
   @Override
@@ -33,5 +34,20 @@ public class LoginDaoImpl implements LoginDao {
       e.printStackTrace();
     }
     return user;
+  }
+
+  @Override
+  public boolean verifyUserWithToken (String token) throws NotAuthorizedException {
+    try (Connection conn = new DbConnection().connect().getConnection()){
+      if(token == null) throw new NotAuthorizedException("Invalid token");
+      PreparedStatement statement = conn.prepareStatement("SELECT UserToken FROM Users WHERE UserToken = ?");
+      statement.setString(1, token);
+      ResultSet results = statement.executeQuery();
+      if(!results.next()) throw new NotAuthorizedException("Invalid token");
+      return true;
+    } catch (SQLException | NotAuthorizedException e) {
+      e.printStackTrace();
+      return false;
+    }
   }
 }
