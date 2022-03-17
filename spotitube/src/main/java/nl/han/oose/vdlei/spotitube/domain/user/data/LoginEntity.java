@@ -26,6 +26,7 @@ public class LoginEntity implements JSONEntity {
   @Override
   public String toJson() {
     JSONBuilder jb = new JSONBuilder(this);
-    return jb.build();
+    String json = jb.build();
+    return json;
   }
 }

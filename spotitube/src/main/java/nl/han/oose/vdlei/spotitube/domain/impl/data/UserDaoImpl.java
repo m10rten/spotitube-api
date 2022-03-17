@@ -32,7 +32,6 @@ public class LoginDaoImpl implements LoginDao {
     } catch (SQLException e){
       e.printStackTrace();
     }
-
     return user;
   }
 }
