@@ -4,6 +4,12 @@
 
 --CREATE DATABASE spotitube_db
 --USE spotitube_db
+DROP TABLE IF EXISTS User_Playlists;
+DROP TABLE IF EXISTS Playlist_Tracks;
+DROP TABLE IF EXISTS Playlists;
+DROP TABLE IF EXISTS Users;
+DROP TABLE IF EXISTS Tracks;
+
 DROP TABLE IF EXISTS Users;
 CREATE TABLE Users (
 	UserId int IDENTITY(1,1),
@@ -19,7 +25,7 @@ CREATE TABLE Playlists (
 	PlaylistId int IDENTITY(1, 1),
 	PlaylistLength int,
 	PlaylistName varchar(256),
-	PlaylistOwnderId int FOREIGN KEY REFERENCES Users(UserId),
+	PlaylistOwnerId int FOREIGN KEY REFERENCES Users(UserId),
 	PRIMARY KEY (PlaylistId),
 );
 
@@ -39,8 +45,8 @@ CREATE TABLE Tracks (
 
 DROP TABLE IF EXISTS User_Playlists;
 CREATE TABLE User_Playlists (
-	UserId int FOREIGN KEY REFERENCES Users(UserId),
-	PlaylistId int FOREIGN KEY REFERENCES Playlists(PlaylistId),	
+	UserId int FOREIGN KEY REFERENCES Users(UserId) ON DELETE CASCADE,
+	PlaylistId int FOREIGN KEY REFERENCES Playlists(PlaylistId) ON DELETE CASCADE,	
 );
 
 DROP TABLE IF EXISTS Playlist_Tracks;
@@ -89,11 +95,13 @@ VALUES ('beethoven 2e', 'sonata', 140,
 		'classical piano playlist',
 		'Ludwig Von Beethoven', '18-6-2018', 0, 3);
 
-INSERT INTO Playlists (PlaylistLength, PlaylistName, PlaylistOwnderId)
+INSERT INTO Playlists (PlaylistLength, PlaylistName, PlaylistOwnerId)
 	VALUES (237, 'Rap songs', 2);
 
-INSERT INTO Playlists (PlaylistLength, PlaylistName, PlaylistOwnderId)
+INSERT INTO Playlists (PlaylistLength, PlaylistName, PlaylistOwnerId)
 	VALUES (1430, 'classical piano', 2);
+
+	--DELETE FROM Playlists WHERE PlaylistId = 2;
 
 -- INSERT INTO Users (UserName, UserFull, UserPassword, UserToken) VALUES ('meron','Meron Brouwer','4a76c706eeb50a6ed472923fd39eb33332a37e8b676f68f891d60cee7e9800b3', '1234-1523-6665-1298')
 

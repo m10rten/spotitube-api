@@ -8,7 +8,7 @@ public class PlaylistEntity {
     private int id;
     private String name;
     private boolean owner;
-    private ArrayList<TrackEntity> tracks;
+    private ArrayList<TrackEntity> tracks = new ArrayList<TrackEntity>();
 
     public void setId(int id) {
         this.id = id;

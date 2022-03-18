@@ -21,7 +21,7 @@ public class LoginController {
       LoginResponse response = loginService.loginUser(params.getUser(), params.getPassword());
       return Response.status(Response.Status.OK).entity(response).build();
     } catch (NotAuthorizedException e) {
-      return Response.status(Response.Status.FORBIDDEN).build();
+      return Response.status(Response.Status.FORBIDDEN).entity("Invalid combination: User + Password").build();
     }
   }
 }

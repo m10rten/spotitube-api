@@ -8,6 +8,9 @@ public class PlaylistResponse {
     private int length;
     private ArrayList<PlaylistEntity> playlists = new ArrayList<PlaylistEntity>();
 
+    public void setPlaylists(ArrayList<PlaylistEntity> playlists) {
+        this.playlists = playlists;
+    }
     public void setLength(int length) {
         this.length = length;
     }
@@ -15,7 +18,7 @@ public class PlaylistResponse {
         return length;
     }
     public void addLength(int length){
-        length += length;
+        this.length += length;
     }
     public ArrayList<PlaylistEntity> getPlaylists() {
         return playlists;

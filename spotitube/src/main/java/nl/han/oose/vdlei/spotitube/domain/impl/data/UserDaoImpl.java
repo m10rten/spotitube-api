@@ -18,8 +18,7 @@ public class UserDaoImpl implements UserDao {
   @Override
   public LoginEntity getUserDetails(String userName, String password) {
     LoginEntity user = new LoginEntity();
-    Connection conn = new DbConnection().connect().getConnection();
-    try {
+    try (Connection conn = new DbConnection().connect().getConnection()) {
       PreparedStatement statement = conn.prepareStatement("SELECT * FROM Users WHERE UserName = ? AND UserPassword = ?");
       statement.setString(1, userName);
       statement.setString(2, hasher.hash(password));
@@ -29,7 +28,6 @@ public class UserDaoImpl implements UserDao {
       }
       user.setUser(result.getString("UserFull"));
       user.setToken(result.getString("UserToken"));
-      conn.close();
     } catch (SQLException e){
       e.printStackTrace();
     }
@@ -48,6 +46,35 @@ public class UserDaoImpl implements UserDao {
     } catch (SQLException | NotAuthorizedException e) {
       e.printStackTrace();
       return false;
+    }
+  }
+
+  @Override
+  public void updateTokenOnLogin (String newToken, String userName) {
+    try (Connection conn = new DbConnection().connect().getConnection()){
+      PreparedStatement statement = conn.prepareStatement("UPDATE Users SET UserToken = ? WHERE UserName = ? ");
+      statement.setString(1, newToken);
+      statement.setString(2, userName);
+      statement.execute();
+    } catch (SQLException | NotAuthorizedException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public int getId (String userToken) {
+    try (Connection conn = new DbConnection().connect().getConnection()) {
+      PreparedStatement statement = conn.prepareStatement("SELECT UserId FROM Users WHERE UserToken = ?");
+      statement.setString(1, userToken);
+      ResultSet result = statement.executeQuery();
+      if(result.next()) {
+        int userId = Integer.parseInt(result.getString("UserId"));
+        return userId;
+      } else {
+        return -1;
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return -1;
     }
   }
 }
