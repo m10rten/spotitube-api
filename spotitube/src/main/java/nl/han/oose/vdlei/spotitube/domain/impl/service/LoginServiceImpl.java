@@ -21,7 +21,7 @@ public class LoginServiceImpl implements LoginService {
     LoginEntity user = userDao.getUserDetails(userName, password);
     LoginResponse response = new LoginResponse();
     if(user != null) {
-      String token = tokens.generateTokenThatIsNotInDB();
+      String token = tokens.generateRandomToken();
       userDao.updateTokenOnLogin(token, userName);
       response.setToken(token);
       response.setUser(user.getUser());

@@ -1,4 +1,7 @@
 package nl.han.oose.vdlei.spotitube.domain.tracks.service;
 
-public class TrackService {
+import nl.han.oose.vdlei.spotitube.domain.tracks.presentation.TracksResponse;
+
+public interface TrackService {
+  TracksResponse findAllTracksNotInThePlaylist(int playlistId);
 }

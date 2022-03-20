@@ -53,6 +53,7 @@ DROP TABLE IF EXISTS Playlist_Tracks;
 CREATE TABLE Playlist_Tracks (
 	PlaylistId int FOREIGN KEY REFERENCES Playlists(PlaylistId) ON DELETE CASCADE,
 	TrackId int FOREIGN KEY REFERENCES Tracks(TrackId) ON DELETE CASCADE,
+	TrackOfflineAvailableInPlaylist int DEFAULT 0,
 	PRIMARY KEY (PlaylistId, TrackId)
 );
 
@@ -145,5 +146,12 @@ SELECT SUM(TrackDuration) AS Duration FROM Users
 SELECT * FROM Playlist_Tracks 
 	INNER JOIN Tracks ON Playlist_Tracks.TrackId = Tracks.TrackId
 	WHERE Playlist_Tracks.PlaylistId = 1
+
+SELECT * FROM Tracks WHERE TrackId NOT IN (SELECT TrackId FROM Playlist_Tracks WHERE Playlistid = 1);
+
+SELECT * FROM Playlists 
+              RIGHT JOIN Playlist_Tracks ON PLaylists.PlaylistId = Playlist_Tracks.PlaylistId
+              RIGHT JOIN Tracks ON Playlist_Tracks.TrackId = Tracks.TrackId
+              WHERE Playlists.PlayListId = 1 OR Tracks.TrackId = 5
 -- mortypassword
 -- MySuperSecretPassword12341
