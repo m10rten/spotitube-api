@@ -17,18 +17,20 @@ public class TrackController {
   @Inject
   TrackServiceImpl trackService;
 
-  private void validateToken (String token) throws NotAuthorizedException {
+  private void validateToken(String token) throws NotAuthorizedException {
     boolean hasValidToken = userDao.verifyUserWithToken(token);
-    if(!hasValidToken) {
+    if (!hasValidToken) {
       throw new NotAuthorizedException("Invalid token");
-    };
+    }
+    ;
   }
 
   @Path("/")
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
-  public Response getTracksNotInPlaylistEndpoint (@QueryParam("token") String token, @QueryParam("forPlaylist") int playlistId) {
+  public Response getTracksNotInPlaylistEndpoint(@QueryParam("token") String token,
+      @QueryParam("forPlaylist") int playlistId) {
     try {
       validateToken(token);
       TracksResponse tracks = trackService.findAllTracksNotInThePlaylist(playlistId);

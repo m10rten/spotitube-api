@@ -39,7 +39,7 @@ public class PlaylistServiceImpl implements PlaylistService {
   }
 
   @Override
-  public PlaylistResponse deletePlaylistWithId(int playlistId, String token){
+  public PlaylistResponse deletePlaylistWithId(int playlistId, String token) {
     PlaylistResponse playlistResponse = new PlaylistResponse();
     int userId = userDao.getId(token);
     playlistResponse.setPlaylists(playlistDao.deletePlaylistAndReturnRemaining(playlistId, userId));
@@ -69,8 +69,8 @@ public class PlaylistServiceImpl implements PlaylistService {
   public TracksResponse postNewTrackInPlaylistService(int playlistId, TrackEntity track) {
     TracksResponse tracks = new TracksResponse();
     int trackId = track.getId();
-    if(trackDao.trackExists(trackId)){
-//      add to playlist
+    if (trackDao.trackExists(trackId)) {
+      // add to playlist
       playlistDao.addTrackToPlaylist(playlistId, track);
     }
     tracks.setTracks(playlistDao.getTracksFromPlaylistId(playlistId));
@@ -78,9 +78,9 @@ public class PlaylistServiceImpl implements PlaylistService {
   }
 
   @Override
-  public TracksResponse deleteTrackInPlaylistService (int playlistId, int trackId){
+  public TracksResponse deleteTrackInPlaylistService(int playlistId, int trackId) {
     TracksResponse tracks = new TracksResponse();
-    if(trackDao.trackExists(trackId)){
+    if (trackDao.trackExists(trackId)) {
       playlistDao.removeTrackFromPlaylist(playlistId, trackId);
     }
     tracks.setTracks(playlistDao.getTracksFromPlaylistId(playlistId));

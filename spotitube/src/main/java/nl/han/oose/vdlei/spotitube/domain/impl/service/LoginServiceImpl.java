@@ -14,13 +14,14 @@ public class LoginServiceImpl implements LoginService {
   private UserDaoImpl userDao;
   @Inject
   private TokenMethodes tokens;
-  //  TODO: when a user logs in: create new token.
+
+  // TODO: when a user logs in: create new token.
   public LoginResponse loginUser(String userName, String password) throws NotAuthorizedException {
     System.out.println(userName);
     System.out.println(password);
     LoginEntity user = userDao.getUserDetails(userName, password);
     LoginResponse response = new LoginResponse();
-    if(user != null) {
+    if (user != null) {
       String token = tokens.generateRandomToken();
       userDao.updateTokenOnLogin(token, userName);
       response.setToken(token);

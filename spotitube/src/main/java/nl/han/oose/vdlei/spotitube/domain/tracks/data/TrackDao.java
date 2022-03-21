@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public interface TrackDao {
   ArrayList<TrackEntity> getTracksNotInPlaylistFromDB(int playlistId);
+
   boolean trackExists(int trackId);
+
   TrackEntity getTrackInformationWithinPlaylist(int trackId, int playlistId);
 }

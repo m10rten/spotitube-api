@@ -22,18 +22,19 @@ public class PlaylistController {
   @Inject
   UserDaoImpl userDao;
 
-  private void validateToken (String token) throws NotAuthorizedException {
+  private void validateToken(String token) throws NotAuthorizedException {
     boolean hasValidToken = userDao.verifyUserWithToken(token);
-    if(!hasValidToken) {
+    if (!hasValidToken) {
       throw new NotAuthorizedException("Invalid token");
-    };
+    }
+    ;
   }
 
   @Path("/")
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
-  public Response getPlaylistsForUserEndpoint(@QueryParam("token") String token){
+  public Response getPlaylistsForUserEndpoint(@QueryParam("token") String token) {
     try {
       validateToken(token);
       PlaylistResponse playlistResponse = playlistService.findAllPlaylists(token);
@@ -42,11 +43,12 @@ public class PlaylistController {
       return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).build();
     }
   }
+
   @Path("/")
   @POST
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
-  public Response postNewPlaylistEndpoint(@QueryParam("token") String token, PlaylistRequest newPlaylist){
+  public Response postNewPlaylistEndpoint(@QueryParam("token") String token, PlaylistRequest newPlaylist) {
     try {
       validateToken(token);
       PlaylistResponse response = playlistService.postNewPlaylistAndReturnAll(token, newPlaylist);
@@ -56,14 +58,14 @@ public class PlaylistController {
     }
   }
 
-
   @Path("/{id}/")
   @DELETE
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
   public Response deletePlaylistEndpoint(@QueryParam("token") String token, @PathParam("id") int playlistId) {
     try {
-      if(!playlistDao.verifyOwner(playlistId, userDao.getId(token))) throw new NotAuthorizedException("Not the owner");
+      if (!playlistDao.verifyOwner(playlistId, userDao.getId(token)))
+        throw new NotAuthorizedException("Not the owner");
       PlaylistResponse remainingPlaylists = playlistService.deletePlaylistWithId(playlistId, token);
       return Response.status(Response.Status.OK).entity(remainingPlaylists).build();
     } catch (NotAuthorizedException e) {
@@ -75,12 +77,14 @@ public class PlaylistController {
   @PUT
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
-  public Response editPlaylistEndpoint(@QueryParam("token") String token, @PathParam("id") int playlistId, PlaylistRequest playlist){
+  public Response editPlaylistEndpoint(@QueryParam("token") String token, @PathParam("id") int playlistId,
+      PlaylistRequest playlist) {
     try {
       validateToken(token);
-      if(!playlistDao.verifyOwner(playlistId, userDao.getId(token))) {
+      if (!playlistDao.verifyOwner(playlistId, userDao.getId(token))) {
         throw new NotAuthorizedException("Not the owner");
-      };
+      }
+      ;
       PlaylistResponse playlists = playlistService.editPlaylistAndReturnAllService(token, playlist);
       return Response.status(Response.Status.OK).entity(playlists).build();
     } catch (NotAuthorizedException e) {
@@ -92,7 +96,7 @@ public class PlaylistController {
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
-  public Response getTracksFromPlaylistEndpoint(@QueryParam("token") String token, @PathParam("id") int playlistId){
+  public Response getTracksFromPlaylistEndpoint(@QueryParam("token") String token, @PathParam("id") int playlistId) {
     try {
       validateToken(token);
       TracksResponse response = playlistService.getTracksFromPlaylist(playlistId);
@@ -106,7 +110,8 @@ public class PlaylistController {
   @POST
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
-  public Response postTrackInPlaylistEndpoint(@QueryParam("token") String token, @PathParam("id") int playlistId, TrackEntity track) {
+  public Response postTrackInPlaylistEndpoint(@QueryParam("token") String token, @PathParam("id") int playlistId,
+      TrackEntity track) {
     try {
       validateToken(token);
       TracksResponse tracks = playlistService.postNewTrackInPlaylistService(playlistId, track);
@@ -120,7 +125,8 @@ public class PlaylistController {
   @DELETE
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
-  public Response deleteTrackFromPlaylistEndpoint(@QueryParam("token") String token, @PathParam("id") int playlistId, @PathParam("trackId") int trackId) {
+  public Response deleteTrackFromPlaylistEndpoint(@QueryParam("token") String token, @PathParam("id") int playlistId,
+      @PathParam("trackId") int trackId) {
     try {
       validateToken(token);
       TracksResponse tracks = playlistService.deleteTrackInPlaylistService(playlistId, trackId);

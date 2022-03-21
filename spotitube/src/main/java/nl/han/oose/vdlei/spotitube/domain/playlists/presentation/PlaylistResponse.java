@@ -11,18 +11,23 @@ public class PlaylistResponse {
     public void setPlaylists(ArrayList<PlaylistEntity> playlists) {
         this.playlists = playlists;
     }
+
     public void setLength(int length) {
         this.length = length;
     }
+
     public int getLength() {
         return length;
     }
-    public void addLength(int length){
+
+    public void addLength(int length) {
         this.length += length;
     }
+
     public ArrayList<PlaylistEntity> getPlaylists() {
         return playlists;
     }
+
     public void addPlaylist(PlaylistEntity playlist) {
         playlists.add(playlist);
     }

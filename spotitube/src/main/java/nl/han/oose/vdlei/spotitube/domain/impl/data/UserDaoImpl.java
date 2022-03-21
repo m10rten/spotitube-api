@@ -15,33 +15,37 @@ import java.sql.SQLException;
 public class UserDaoImpl implements UserDao {
   @Inject
   private HashMethodes hasher;
+
   @Override
   public LoginEntity getUserDetails(String userName, String password) {
     LoginEntity user = new LoginEntity();
     try (Connection conn = new DbConnection().connect().getConnection()) {
-      PreparedStatement statement = conn.prepareStatement("SELECT * FROM Users WHERE UserName = ? AND UserPassword = ?");
+      PreparedStatement statement = conn
+          .prepareStatement("SELECT * FROM Users WHERE UserName = ? AND UserPassword = ?");
       statement.setString(1, userName);
       statement.setString(2, hasher.hash(password));
       ResultSet result = statement.executeQuery();
-      if(!result.next()){
+      if (!result.next()) {
         return null;
       }
       user.setUser(result.getString("UserFull"));
       user.setToken(result.getString("UserToken"));
-    } catch (SQLException e){
+    } catch (SQLException e) {
       e.printStackTrace();
     }
     return user;
   }
 
   @Override
-  public boolean verifyUserWithToken (String token) throws NotAuthorizedException {
-    try (Connection conn = new DbConnection().connect().getConnection()){
-      if(token == null) throw new NotAuthorizedException("Invalid token");
+  public boolean verifyUserWithToken(String token) throws NotAuthorizedException {
+    try (Connection conn = new DbConnection().connect().getConnection()) {
+      if (token == null)
+        throw new NotAuthorizedException("Invalid token");
       PreparedStatement statement = conn.prepareStatement("SELECT UserToken FROM Users WHERE UserToken = ?");
       statement.setString(1, token);
       ResultSet results = statement.executeQuery();
-      if(!results.next()) throw new NotAuthorizedException("Invalid token");
+      if (!results.next())
+        throw new NotAuthorizedException("Invalid token");
       return true;
     } catch (SQLException | NotAuthorizedException e) {
       e.printStackTrace();
@@ -50,8 +54,8 @@ public class UserDaoImpl implements UserDao {
   }
 
   @Override
-  public void updateTokenOnLogin (String newToken, String userName) {
-    try (Connection conn = new DbConnection().connect().getConnection()){
+  public void updateTokenOnLogin(String newToken, String userName) {
+    try (Connection conn = new DbConnection().connect().getConnection()) {
       PreparedStatement statement = conn.prepareStatement("UPDATE Users SET UserToken = ? WHERE UserName = ? ");
       statement.setString(1, newToken);
       statement.setString(2, userName);
@@ -61,12 +65,12 @@ public class UserDaoImpl implements UserDao {
     }
   }
 
-  public int getId (String userToken) {
+  public int getId(String userToken) {
     try (Connection conn = new DbConnection().connect().getConnection()) {
       PreparedStatement statement = conn.prepareStatement("SELECT UserId FROM Users WHERE UserToken = ?");
       statement.setString(1, userToken);
       ResultSet result = statement.executeQuery();
-      if(result.next()) {
+      if (result.next()) {
         int userId = Integer.parseInt(result.getString("UserId"));
         return userId;
       } else {

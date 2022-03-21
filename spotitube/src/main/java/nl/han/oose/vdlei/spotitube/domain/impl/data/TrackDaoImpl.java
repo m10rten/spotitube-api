@@ -13,7 +13,7 @@ import static nl.han.oose.vdlei.spotitube.domain.db.DbConnection.connection;
 
 public class TrackDaoImpl implements TrackDao {
 
-  private TrackEntity convertResultIntoTrack (ResultSet result) {
+  private TrackEntity convertResultIntoTrack(ResultSet result) {
     TrackEntity track = new TrackEntity();
     try {
       int duration = Integer.parseInt(result.getString("TrackDuration"));
@@ -25,7 +25,7 @@ public class TrackDaoImpl implements TrackDao {
       track.setPerformer(result.getString("TrackPerformer"));
       track.setPlaycount(Integer.parseInt(result.getString("TrackPlayCount")));
       track.setPublicationDate(result.getString("TrackPublicationDate"));
-      //          1 = true; 0 = false;
+      // 1 = true; 0 = false;
       track.setOfflineAvailable(Integer.parseInt(result.getString("TrackOfflineAvailableInPlaylist")) == 1);
     } catch (SQLException e) {
 
@@ -36,7 +36,7 @@ public class TrackDaoImpl implements TrackDao {
   public boolean isTrackInAPlaylist(int trackId, int playlistId) {
     try (Connection conn = connection()) {
       PreparedStatement statement = conn.prepareStatement("SELECT * FROM Playlist_Tracks " +
-              "WHERE PlaylistId = ? AND TrackId = ?");
+          "WHERE PlaylistId = ? AND TrackId = ?");
       statement.setInt(1, playlistId);
       statement.setInt(2, trackId);
       ResultSet results = statement.executeQuery();
@@ -51,15 +51,15 @@ public class TrackDaoImpl implements TrackDao {
   public TrackEntity getTrackInformationWithinPlaylist(int trackId, int playlistId) {
     TrackEntity track = new TrackEntity();
     try (Connection conn = connection()) {
-      PreparedStatement statement = conn.prepareStatement( "SELECT * FROM Playlists " +
-              "INNER JOIN Playlist_Tracks ON PLaylists.PlaylistId = Playlist_Tracks.PlaylistId " +
-              "INNER JOIN Tracks ON Playlist_Tracks.TrackId = Tracks.TrackId " +
-              "WHERE Playlists.PlayListId = ? AND Tracks.TrackId = ? ");
+      PreparedStatement statement = conn.prepareStatement("SELECT * FROM Playlists " +
+          "INNER JOIN Playlist_Tracks ON PLaylists.PlaylistId = Playlist_Tracks.PlaylistId " +
+          "INNER JOIN Tracks ON Playlist_Tracks.TrackId = Tracks.TrackId " +
+          "WHERE Playlists.PlayListId = ? AND Tracks.TrackId = ? ");
       statement.setInt(1, playlistId);
       statement.setInt(2, trackId);
       ResultSet result = statement.executeQuery();
-//          add values
-      while(result.next()) {
+      // add values
+      while (result.next()) {
         track = convertResultIntoTrack(result);
       }
     } catch (SQLException e) {
@@ -74,8 +74,8 @@ public class TrackDaoImpl implements TrackDao {
       PreparedStatement statement = conn.prepareStatement("SELECT * FROM Tracks WHERE TrackId = ?");
       statement.setInt(1, trackId);
       ResultSet result = statement.executeQuery();
-//          add values
-      while(result.next()) {
+      // add values
+      while (result.next()) {
         track = convertResultIntoTrack(result);
       }
     } catch (SQLException e) {
@@ -88,10 +88,11 @@ public class TrackDaoImpl implements TrackDao {
   public ArrayList<TrackEntity> getTracksNotInPlaylistFromDB(int playlistId) {
     ArrayList<TrackEntity> tracks = new ArrayList<TrackEntity>();
     try (Connection conn = connection()) {
-      PreparedStatement statement = conn.prepareStatement("SELECT * FROM Tracks WHERE TrackId NOT IN (SELECT TrackId FROM Playlist_Tracks WHERE PlaylistId = ?)");
+      PreparedStatement statement = conn.prepareStatement(
+          "SELECT * FROM Tracks WHERE TrackId NOT IN (SELECT TrackId FROM Playlist_Tracks WHERE PlaylistId = ?)");
       statement.setInt(1, playlistId);
       ResultSet results = statement.executeQuery();
-      while(results.next()) {
+      while (results.next()) {
         int trackId = Integer.parseInt(results.getString("TrackId"));
         TrackEntity track = getTrackInformation(trackId);
         tracks.add(track);
@@ -103,8 +104,8 @@ public class TrackDaoImpl implements TrackDao {
   }
 
   @Override
-  public boolean trackExists(int trackId){
-    try(Connection conn = connection()) {
+  public boolean trackExists(int trackId) {
+    try (Connection conn = connection()) {
       PreparedStatement statement = conn.prepareStatement("SELECT TrackId FROM Tracks WHERE TrackId = ?");
       statement.setInt(1, trackId);
       ResultSet result = statement.executeQuery();
