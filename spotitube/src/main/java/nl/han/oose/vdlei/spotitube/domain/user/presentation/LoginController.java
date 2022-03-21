@@ -9,8 +9,12 @@ import javax.ws.rs.core.Response;
 
 @Path("/login")
 public class LoginController {
+  private LoginServiceImpl loginService;
+
   @Inject
-  LoginServiceImpl loginService;
+  public void setLoginService(LoginServiceImpl loginService) {
+    this.loginService = loginService;
+  }
 
   @Path("/")
   @POST

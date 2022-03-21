@@ -13,14 +13,26 @@ import javax.ws.rs.core.Response;
 
 @Path("/playlists")
 public class PlaylistController {
-  @Inject
-  PlaylistServiceImpl playlistService;
+  private PlaylistServiceImpl playlistService;
+
+  private PlaylistDaoImpl playlistDao;
+
+  private UserDaoImpl userDao;
 
   @Inject
-  PlaylistDaoImpl playlistDao;
+  public void setPlaylistService(PlaylistServiceImpl playlistService) {
+    this.playlistService = playlistService;
+  }
 
   @Inject
-  UserDaoImpl userDao;
+  public void setPlaylistDao(PlaylistDaoImpl playlistDao) {
+    this.playlistDao = playlistDao;
+  }
+
+  @Inject
+  public void setUserDao(UserDaoImpl userDao) {
+    this.userDao = userDao;
+  }
 
   private void validateToken(String token) throws NotAuthorizedException {
     boolean hasValidToken = userDao.verifyUserWithToken(token);

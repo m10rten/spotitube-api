@@ -11,11 +11,18 @@ import javax.ws.rs.core.Response;
 @Path("/tracks")
 public class TrackController {
 
-  @Inject
-  UserDaoImpl userDao;
+  private UserDaoImpl userDao;
+  private TrackServiceImpl trackService;
 
   @Inject
-  TrackServiceImpl trackService;
+  public void setUserDao(UserDaoImpl userDao) {
+    this.userDao = userDao;
+  }
+
+  @Inject
+  public void setTrackService(TrackServiceImpl trackService) {
+    this.trackService = trackService;
+  }
 
   private void validateToken(String token) throws NotAuthorizedException {
     boolean hasValidToken = userDao.verifyUserWithToken(token);
