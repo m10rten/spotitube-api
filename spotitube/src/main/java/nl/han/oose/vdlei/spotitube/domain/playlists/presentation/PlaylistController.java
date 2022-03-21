@@ -64,8 +64,9 @@ public class PlaylistController {
   @Consumes(MediaType.APPLICATION_JSON)
   public Response deletePlaylistEndpoint(@QueryParam("token") String token, @PathParam("id") int playlistId) {
     try {
-      if (!playlistDao.verifyOwner(playlistId, userDao.getId(token)))
+      if (!playlistDao.verifyOwner(playlistId, userDao.getId(token))) {
         throw new NotAuthorizedException("Not the owner");
+      }
       PlaylistResponse remainingPlaylists = playlistService.deletePlaylistWithId(playlistId, token);
       return Response.status(Response.Status.OK).entity(remainingPlaylists).build();
     } catch (NotAuthorizedException e) {
@@ -84,7 +85,6 @@ public class PlaylistController {
       if (!playlistDao.verifyOwner(playlistId, userDao.getId(token))) {
         throw new NotAuthorizedException("Not the owner");
       }
-      ;
       PlaylistResponse playlists = playlistService.editPlaylistAndReturnAllService(token, playlist);
       return Response.status(Response.Status.OK).entity(playlists).build();
     } catch (NotAuthorizedException e) {

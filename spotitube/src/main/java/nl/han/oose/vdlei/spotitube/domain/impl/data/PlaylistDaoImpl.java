@@ -30,8 +30,9 @@ public class PlaylistDaoImpl implements PlaylistDao {
           "\tINNER JOIN Playlist_Tracks ON Playlists.PlaylistId = Playlist_Tracks.PlaylistId\n" +
           "\tINNER JOIN Tracks ON Playlist_Tracks.TrackId = Tracks.TrackId \n ; ");
       ResultSet result = statement.executeQuery();
-      if (result.next())
+      if (result.next()) {
         length = Integer.parseInt(result.getString("TotalDuration"));
+      }
     } catch (SQLException e) {
       e.printStackTrace();
     }
