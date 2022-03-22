@@ -29,7 +29,6 @@ public class TrackController {
     if (!hasValidToken) {
       throw new NotAuthorizedException("Invalid token");
     }
-    ;
   }
 
   @Path("/")

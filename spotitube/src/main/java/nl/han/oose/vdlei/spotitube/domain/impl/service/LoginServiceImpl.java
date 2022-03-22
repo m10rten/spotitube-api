@@ -23,7 +23,6 @@ public class LoginServiceImpl implements LoginService {
     this.tokens = tokens;
   }
 
-  // TODO: when a user logs in: create new token.
   public LoginResponse loginUser(String userName, String password) throws NotAuthorizedException {
     System.out.println(userName);
     System.out.println(password);

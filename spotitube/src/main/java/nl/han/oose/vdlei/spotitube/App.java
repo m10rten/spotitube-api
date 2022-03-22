@@ -24,6 +24,10 @@ public class App {
     parent.addChild(child2);
 
     System.out.println(parent.toJson());
+    var hash = new HashMethodes();
+
+    var hashed = hash.hash("testhashstring");
+    System.out.println(hashed);
 
   }
 

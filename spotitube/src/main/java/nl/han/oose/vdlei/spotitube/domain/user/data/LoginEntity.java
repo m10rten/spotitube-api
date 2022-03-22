@@ -3,7 +3,7 @@ package nl.han.oose.vdlei.spotitube.domain.user.data;
 import nl.han.oose.vdlei.spotitube.utils.json.JSONBuilder;
 import nl.han.oose.vdlei.spotitube.utils.json.JSONEntity;
 
-public class LoginEntity implements JSONEntity {
+public class LoginEntity {
   private String token;
   private String user;
 
@@ -21,12 +21,5 @@ public class LoginEntity implements JSONEntity {
 
   public String getUser() {
     return user;
-  }
-
-  @Override
-  public String toJson() {
-    JSONBuilder jb = new JSONBuilder(this);
-    String json = jb.build();
-    return json;
   }
 }

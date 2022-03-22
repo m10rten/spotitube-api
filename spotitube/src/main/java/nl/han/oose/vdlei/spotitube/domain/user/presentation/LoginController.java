@@ -20,7 +20,7 @@ public class LoginController {
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  public Response loginUser(LoginRequest params) {
+  public Response loginUserEndpoint(LoginRequest params) {
     try {
       LoginResponse response = loginService.loginUser(params.getUser(), params.getPassword());
       return Response.status(Response.Status.OK).entity(response).build();

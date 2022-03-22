@@ -46,7 +46,7 @@ public class PlaylistController {
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
-  public Response getPlaylistsForUserEndpoint(@QueryParam("token") String token) {
+  public Response getPlaylistsEndpoint(@QueryParam("token") String token) {
     try {
       validateToken(token);
       PlaylistResponse playlistResponse = playlistService.findAllPlaylists(token);
