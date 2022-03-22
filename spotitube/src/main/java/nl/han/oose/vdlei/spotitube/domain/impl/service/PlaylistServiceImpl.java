@@ -13,14 +13,26 @@ import javax.inject.Inject;
 
 public class PlaylistServiceImpl implements PlaylistService {
 
-  @Inject
-  PlaylistDaoImpl playlistDao;
+  private PlaylistDaoImpl playlistDao;
+
+  private UserDaoImpl userDao;
+
+  private TrackDaoImpl trackDao;
 
   @Inject
-  UserDaoImpl userDao;
+  public void setPlaylistDao(PlaylistDaoImpl playlistDao) {
+    this.playlistDao = playlistDao;
+  }
 
   @Inject
-  TrackDaoImpl trackDao;
+  public void setUserDao(UserDaoImpl userDao) {
+    this.userDao = userDao;
+  }
+
+  @Inject
+  public void setTrackDao(TrackDaoImpl trackDao) {
+    this.trackDao = trackDao;
+  }
 
   @Override
   public PlaylistResponse findAllPlaylists(String token) {

@@ -10,10 +10,18 @@ import javax.inject.Inject;
 import javax.ws.rs.NotAuthorizedException;
 
 public class LoginServiceImpl implements LoginService {
-  @Inject
   private UserDaoImpl userDao;
-  @Inject
   private TokenMethodes tokens;
+
+  @Inject
+  public void setUserDao(UserDaoImpl userDao) {
+    this.userDao = userDao;
+  }
+
+  @Inject
+  public void setTokens(TokenMethodes tokens) {
+    this.tokens = tokens;
+  }
 
   // TODO: when a user logs in: create new token.
   public LoginResponse loginUser(String userName, String password) throws NotAuthorizedException {

@@ -13,8 +13,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserDaoImpl implements UserDao {
-  @Inject
   private HashMethodes hasher;
+
+  @Inject
+  public void setHasher(HashMethodes hasher) {
+    this.hasher = hasher;
+  }
 
   @Override
   public LoginEntity getUserDetails(String userName, String password) {

@@ -7,8 +7,12 @@ import nl.han.oose.vdlei.spotitube.domain.tracks.service.TrackService;
 import javax.inject.Inject;
 
 public class TrackServiceImpl implements TrackService {
+  private TrackDaoImpl trackDao;
+
   @Inject
-  TrackDaoImpl trackDao;
+  public void setTrackDao(TrackDaoImpl trackDao) {
+    this.trackDao = trackDao;
+  }
 
   @Override
   public TracksResponse findAllTracksNotInThePlaylist(int playlistId) {

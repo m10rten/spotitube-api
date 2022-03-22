@@ -15,9 +15,12 @@ import java.util.ArrayList;
 import static nl.han.oose.vdlei.spotitube.domain.db.DbConnection.connection;
 
 public class PlaylistDaoImpl implements PlaylistDao {
-  @Inject
-  TrackDaoImpl trackDao;
+  private TrackDaoImpl trackDao;
 
+  @Inject
+  public void setTrackDao(TrackDaoImpl trackDao) {
+    this.trackDao = trackDao;
+  }
   // private Connection connection () {
   // return new DbConnection().connect().getConnection();
   // }
