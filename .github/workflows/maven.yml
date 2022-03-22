@@ -19,8 +19,8 @@ jobs:
     - name: Set up JDK 11 ⏳
       uses: actions/setup-java@v2
       with:
-        java-version: '11'
-        distribution: 'temurin'
+        java-version: '12'
+        #distribution: 'temurin'
         cache: maven
     - name: Build with Maven 🔨...
       run: mvn -B package --file spotitube/pom.xml
