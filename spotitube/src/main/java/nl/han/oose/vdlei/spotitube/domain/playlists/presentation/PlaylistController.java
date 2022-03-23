@@ -67,7 +67,7 @@ public class PlaylistController {
     try {
       validateToken(token);
       PlaylistResponse response = playlistService.postNewPlaylistAndReturnAll(token, newPlaylist);
-      return Response.status(Response.Status.OK).entity(response).build();
+      return Response.status(Response.Status.CREATED).entity(response).build();
     } catch (NotAuthorizedException e) {
       return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).build();
     }
