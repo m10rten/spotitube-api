@@ -1,5 +1,6 @@
 package nl.han.oose.vdlei.spotitube.domain.tracks.presentation;
 
+import nl.han.oose.vdlei.spotitube.domain.DummyData;
 import nl.han.oose.vdlei.spotitube.domain.impl.data.TrackDaoImpl;
 import nl.han.oose.vdlei.spotitube.domain.impl.data.UserDaoImpl;
 import nl.han.oose.vdlei.spotitube.domain.impl.service.TrackServiceImpl;
@@ -17,6 +18,7 @@ import org.mockito.Mockito;
 import org.mockito.Mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import javax.ws.rs.NotAuthorizedException;
 import javax.ws.rs.core.Response;
 
 import java.util.ArrayList;
@@ -46,27 +48,43 @@ public class TrackControllerTest {
 
     this.mockedTrackService = mock(TrackService.class);
     this.sut.setTrackService(mockedTrackService);
-    //
+
     this.mockedTrackDao = mock(TrackDao.class);
     this.mockedTrackService.setTrackDao(mockedTrackDao);
-    //
+
     this.mockedUserDao = mock(UserDao.class);
     this.sut.setUserDao(mockedUserDao);
   }
 
-  // @Test
-  // @Disabled
   @Test
-  public void getTracksNotInPlaylistEndpoint() {
+  public void getTracksNotInPlaylistEndpointEmptyTracks() {
     // arrange
     var tracks = new TracksResponse();
     when(mockedTrackService.findAllTracksNotInThePlaylist(PLAYLIST_ID)).thenReturn(tracks);
-    when(mockedUserDao.verifyUserWithToken(USER_TOKEN)).thenReturn(true);
+    when(mockedUserDao.verifyUserWithToken(USER_TOKEN)).thenReturn(false);
+
     // act
     Response response = this.sut.getTracksNotInPlaylistEndpoint(USER_TOKEN, PLAYLIST_ID);
-    verify(mockedTrackService).findAllTracksNotInThePlaylist(TRACK_ID);
 
     // assert
+    assertEquals(Response.Status.UNAUTHORIZED.getStatusCode(), response.getStatus());
+  }
+
+  @Test
+  public void getTrackNotInPlaylistFilled() {
+//    arrange
+    var tracks = new TracksResponse();
+    tracks.setTracks(DummyData.DUMMY_TRACKS);
+    when(mockedUserDao.verifyUserWithToken(DummyData.DUMMY_LOGIN.getToken())).thenReturn(true);
+    when(mockedTrackService.findAllTracksNotInThePlaylist(DummyData.DUMMY_PLAYLIST.getId()))
+            .thenReturn(tracks);
+
+//    act
+    Response response = this.sut.getTracksNotInPlaylistEndpoint(USER_TOKEN, PLAYLIST_ID);
+    verify(mockedTrackService).findAllTracksNotInThePlaylist(TRACK_ID);
+    
+//    assert
     assertEquals(tracks, response.getEntity());
+    assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
   }
 }

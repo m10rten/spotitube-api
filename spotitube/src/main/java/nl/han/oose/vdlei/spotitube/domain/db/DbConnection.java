@@ -42,25 +42,4 @@ public class DbConnection {
       return this;
     }
   }
-
-  public static void main(String[] args) {
-    var conn = new DbConnection().connect().getConnection();
-
-    HashMethodes hasher = new HashMethodes();
-    try {
-      PreparedStatement statement = conn.prepareStatement("SELECT * FROM Users WHERE UserName = ? AND UserPassword = ?");
-      statement.setString(1, "meron");
-      statement.setString(2, hasher.hash("MySuperSecretPassword12341"));
-      ResultSet result = statement.executeQuery();
-      if(!result.next()){
-        System.out.println("null");
-      }
-      System.out.println(result.getString("UserFull"));
-//      user.setUser(result.getString("UserFull"));
-//      user.setToken(result.getString("UserToken"));
-
-    } catch (SQLException e){
-      e.printStackTrace();
-    }
-  }
 }

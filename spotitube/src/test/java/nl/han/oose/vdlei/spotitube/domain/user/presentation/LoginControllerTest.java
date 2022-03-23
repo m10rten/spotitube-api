@@ -1,5 +1,6 @@
 package nl.han.oose.vdlei.spotitube.domain.user.presentation;
 
+import nl.han.oose.vdlei.spotitube.domain.DummyData;
 import nl.han.oose.vdlei.spotitube.domain.impl.service.LoginServiceImpl;
 import nl.han.oose.vdlei.spotitube.domain.user.service.LoginService;
 import org.junit.jupiter.api.BeforeEach;
@@ -50,7 +51,8 @@ class LoginControllerTest {
   @Test
   void loginUserEndpointCorrectCredentials() {
     var login = new LoginResponse();
-    login.setToken("1234-1234-1235");
+    login.setToken(DummyData.DUMMY_LOGIN.getToken());
+    login.setUser(DummyData.DUMMY_LOGIN.getUser());
 
     when(mockedLoginService.loginUser(USER_NAME, USER_PASSWORD)).thenReturn(login);
 
@@ -59,5 +61,7 @@ class LoginControllerTest {
     loginParams.setPassword(USER_PASSWORD);
     Response response = sut.loginUserEndpoint(loginParams);
     assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
+    assertEquals(login, response.getEntity());
+    verify(mockedLoginService).loginUser(USER_NAME, USER_PASSWORD);
   }
 }
