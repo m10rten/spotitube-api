@@ -1,5 +1,6 @@
 package nl.han.oose.vdlei.spotitube.domain.tracks.presentation;
 
+import nl.han.oose.vdlei.spotitube.domain.exceptions.InvalidTokenException;
 import nl.han.oose.vdlei.spotitube.domain.impl.data.UserDaoImpl;
 import nl.han.oose.vdlei.spotitube.domain.impl.service.TrackServiceImpl;
 import nl.han.oose.vdlei.spotitube.domain.tracks.service.TrackService;
@@ -26,10 +27,10 @@ public class TrackController {
     this.trackService = trackService;
   }
 
-  private void validateToken(String token) throws NotAuthorizedException {
+  private void validateToken(String token) throws InvalidTokenException {
     boolean hasValidToken = userDao.verifyUserWithToken(token);
     if (!hasValidToken) {
-      throw new NotAuthorizedException("Invalid token");
+      throw new InvalidTokenException("Invalid token");
     }
   }
 
@@ -43,7 +44,7 @@ public class TrackController {
       validateToken(token);
       TracksResponse tracks = trackService.findAllTracksNotInThePlaylist(playlistId);
       return Response.status(Response.Status.OK).entity(tracks).build();
-    } catch (NotAuthorizedException e) {
+    } catch (InvalidTokenException e) {
       return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).build();
     }
   }

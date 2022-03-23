@@ -1,5 +1,6 @@
 package nl.han.oose.vdlei.spotitube.domain.impl.data;
 
+import nl.han.oose.vdlei.spotitube.domain.exceptions.InvalidTokenException;
 import nl.han.oose.vdlei.spotitube.domain.user.data.UserDao;
 import nl.han.oose.vdlei.spotitube.domain.user.data.LoginEntity;
 import nl.han.oose.vdlei.spotitube.domain.db.DbConnection;
@@ -15,6 +16,7 @@ import java.sql.SQLException;
 public class UserDaoImpl implements UserDao {
   private HashMethodes hasher;
 
+  @Override
   @Inject
   public void setHasher(HashMethodes hasher) {
     this.hasher = hasher;
@@ -50,11 +52,11 @@ public class UserDaoImpl implements UserDao {
       statement.setString(1, token);
       ResultSet results = statement.executeQuery();
       if (!results.next()) {
-        throw new NotAuthorizedException("Invalid token");
+        throw new InvalidTokenException("Invalid token");
       }
       return true;
-    } catch (SQLException | NotAuthorizedException e) {
-      e.printStackTrace();
+    } catch (SQLException | InvalidTokenException e) {
+      if(e instanceof SQLException) e.printStackTrace();
       return false;
     }
   }
@@ -66,7 +68,7 @@ public class UserDaoImpl implements UserDao {
       statement.setString(1, newToken);
       statement.setString(2, userName);
       statement.execute();
-    } catch (SQLException | NotAuthorizedException e) {
+    } catch (SQLException  e) {
       e.printStackTrace();
     }
   }

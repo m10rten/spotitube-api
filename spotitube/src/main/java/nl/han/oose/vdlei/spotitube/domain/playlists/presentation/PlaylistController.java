@@ -1,5 +1,6 @@
 package nl.han.oose.vdlei.spotitube.domain.playlists.presentation;
 
+import nl.han.oose.vdlei.spotitube.domain.exceptions.InvalidTokenException;
 import nl.han.oose.vdlei.spotitube.domain.impl.data.PlaylistDaoImpl;
 import nl.han.oose.vdlei.spotitube.domain.impl.data.UserDaoImpl;
 import nl.han.oose.vdlei.spotitube.domain.impl.service.PlaylistServiceImpl;
@@ -37,12 +38,11 @@ public class PlaylistController {
     this.userDao = userDao;
   }
 
-  private void validateToken(String token) throws NotAuthorizedException {
+  private void validateToken(String token) throws InvalidTokenException {
     boolean hasValidToken = userDao.verifyUserWithToken(token);
     if (!hasValidToken) {
-      throw new NotAuthorizedException("Invalid token");
-    }
-    ;
+      throw new InvalidTokenException("Invalid token");
+    };
   }
 
   @Path("/")
@@ -54,8 +54,8 @@ public class PlaylistController {
       validateToken(token);
       PlaylistResponse playlistResponse = playlistService.findAllPlaylists(token);
       return Response.status(Response.Status.OK).entity(playlistResponse).build();
-    } catch (NotAuthorizedException e) {
-      return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).build();
+    } catch (InvalidTokenException e) {
+      return Response.status(Response.Status.FORBIDDEN).entity(e.getMessage()).build();
     }
   }
 
@@ -68,8 +68,8 @@ public class PlaylistController {
       validateToken(token);
       PlaylistResponse response = playlistService.postNewPlaylistAndReturnAll(token, newPlaylist);
       return Response.status(Response.Status.CREATED).entity(response).build();
-    } catch (NotAuthorizedException e) {
-      return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).build();
+    } catch (InvalidTokenException e) {
+      return Response.status(Response.Status.FORBIDDEN).entity(e.getMessage()).build();
     }
   }
 
@@ -84,8 +84,8 @@ public class PlaylistController {
       }
       PlaylistResponse remainingPlaylists = playlistService.deletePlaylistWithId(playlistId, token);
       return Response.status(Response.Status.OK).entity(remainingPlaylists).build();
-    } catch (NotAuthorizedException e) {
-      return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).build();
+    } catch (InvalidTokenException | NotAuthorizedException e) {
+      return Response.status(Response.Status.FORBIDDEN).entity(e.getMessage()).build();
     }
   }
 
@@ -98,12 +98,12 @@ public class PlaylistController {
     try {
       validateToken(token);
       if (!playlistDao.verifyOwner(playlistId, userDao.getId(token))) {
-        throw new NotAuthorizedException("Not the owner");
+        throw new InvalidTokenException("Not the owner");
       }
       PlaylistResponse playlists = playlistService.editPlaylistAndReturnAllService(token, playlist);
       return Response.status(Response.Status.OK).entity(playlists).build();
-    } catch (NotAuthorizedException e) {
-      return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).build();
+    } catch (InvalidTokenException e) {
+      return Response.status(Response.Status.FORBIDDEN).entity(e.getMessage()).build();
     }
   }
 
@@ -116,8 +116,8 @@ public class PlaylistController {
       validateToken(token);
       TracksResponse response = playlistService.getTracksFromPlaylist(playlistId);
       return Response.status(Response.Status.OK).entity(response).build();
-    } catch (NotAuthorizedException e) {
-      return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).build();
+    } catch (InvalidTokenException e) {
+      return Response.status(Response.Status.FORBIDDEN).entity(e.getMessage()).build();
     }
   }
 
@@ -131,8 +131,8 @@ public class PlaylistController {
       validateToken(token);
       TracksResponse tracks = playlistService.postNewTrackInPlaylistService(playlistId, track);
       return Response.status(Response.Status.OK).entity(tracks).build();
-    } catch (NotAuthorizedException e) {
-      return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).build();
+    } catch (InvalidTokenException e) {
+      return Response.status(Response.Status.FORBIDDEN).entity(e.getMessage()).build();
     }
   }
 
@@ -146,8 +146,8 @@ public class PlaylistController {
       validateToken(token);
       TracksResponse tracks = playlistService.deleteTrackInPlaylistService(playlistId, trackId);
       return Response.status(Response.Status.OK).entity(tracks).build();
-    } catch (NotAuthorizedException e) {
-      return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).build();
+    } catch (InvalidTokenException e) {
+      return Response.status(Response.Status.FORBIDDEN).entity(e.getMessage()).build();
     }
   }
 }

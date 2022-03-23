@@ -1,6 +1,7 @@
 package nl.han.oose.vdlei.spotitube.domain.playlists.data;
 
 import nl.han.oose.vdlei.spotitube.domain.playlists.presentation.PlaylistRequest;
+import nl.han.oose.vdlei.spotitube.domain.tracks.data.TrackDao;
 import nl.han.oose.vdlei.spotitube.domain.tracks.data.TrackEntity;
 
 import java.util.ArrayList;
@@ -23,4 +24,6 @@ public interface PlaylistDao {
     void addTrackToPlaylist(int playlistId, TrackEntity track);
 
     void removeTrackFromPlaylist(int playlistId, int trackId);
+
+    void setTrackDao(TrackDao trackDao);
 }

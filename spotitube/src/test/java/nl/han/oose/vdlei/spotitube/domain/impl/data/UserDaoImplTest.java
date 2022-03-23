@@ -1,5 +1,6 @@
 package nl.han.oose.vdlei.spotitube.domain.impl.data;
 
+import nl.han.oose.vdlei.spotitube.domain.user.data.UserDao;
 import nl.han.oose.vdlei.spotitube.utils.hash.HashMethodes;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,7 +13,7 @@ import static org.mockito.Mockito.*;
 class UserDaoImplTest {
 
     @InjectMocks
-    private UserDaoImpl sut;
+    private UserDao sut;
 
     @Mock
     private HashMethodes hasher;

@@ -25,8 +25,6 @@ public class LoginServiceImpl implements LoginService {
   }
 
   public LoginResponse loginUser(String userName, String password) throws NotAuthorizedException {
-    System.out.println(userName);
-    System.out.println(password);
     LoginEntity user = userDao.getUserDetails(userName, password);
     LoginResponse response = new LoginResponse();
     if (user != null) {

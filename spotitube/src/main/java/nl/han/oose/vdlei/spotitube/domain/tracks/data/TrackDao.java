@@ -8,4 +8,6 @@ public interface TrackDao {
   boolean trackExists(int trackId);
 
   TrackEntity getTrackInformationWithinPlaylist(int trackId, int playlistId);
+
+  TrackEntity getTrackInformation(int trackId);
 }

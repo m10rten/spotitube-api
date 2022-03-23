@@ -1,19 +1,20 @@
 package nl.han.oose.vdlei.spotitube.domain;
 
 import nl.han.oose.vdlei.spotitube.domain.playlists.data.PlaylistEntity;
+import nl.han.oose.vdlei.spotitube.domain.playlists.presentation.PlaylistRequest;
 import nl.han.oose.vdlei.spotitube.domain.playlists.presentation.PlaylistResponse;
 import nl.han.oose.vdlei.spotitube.domain.tracks.data.TrackEntity;
 import nl.han.oose.vdlei.spotitube.domain.user.data.LoginEntity;
 
-import javax.sound.midi.Track;
 import java.util.ArrayList;
 
-public class DummyData {
+public final class DummyData {
   public static final TrackEntity DUMMY_TRACK = makeTrack();
   public static final PlaylistEntity DUMMY_PLAYLIST = makePlaylist();
   public static final LoginEntity DUMMY_LOGIN = makeLogin();
   public static final PlaylistResponse DUMMY_PLAYLISTS = makePlaylists();
   public static final ArrayList<TrackEntity> DUMMY_TRACKS = makeTracksArraylist();
+  public static final PlaylistRequest DUMMY_PLAYLIST_REQUEST = makePlaylistRequest();
 
   /**
    * makes a new track;
@@ -73,10 +74,27 @@ public class DummyData {
     return login;
   }
 
+  /**
+   * makes a new track ArrayList;
+   *
+   * @return ArrayList<TrackEntity>
+   */
   private static ArrayList<TrackEntity> makeTracksArraylist() {
     ArrayList<TrackEntity> tracks = new ArrayList<>();
     tracks.add(makeTrack());
     return tracks;
+  }
+
+  /**
+   * makes a new PlaylistRequest for incoming requests;
+   *
+   * @return PlaylistRequest
+   */
+  private static PlaylistRequest makePlaylistRequest() {
+    PlaylistRequest newPlaylist = new PlaylistRequest();
+    newPlaylist.setId(2);
+    newPlaylist.setName("new playlist");
+    return newPlaylist;
   }
 
 }

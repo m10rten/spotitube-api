@@ -3,6 +3,7 @@ package nl.han.oose.vdlei.spotitube.domain.impl.data;
 import nl.han.oose.vdlei.spotitube.domain.playlists.data.PlaylistDao;
 import nl.han.oose.vdlei.spotitube.domain.playlists.data.PlaylistEntity;
 import nl.han.oose.vdlei.spotitube.domain.playlists.presentation.PlaylistRequest;
+import nl.han.oose.vdlei.spotitube.domain.tracks.data.TrackDao;
 import nl.han.oose.vdlei.spotitube.domain.tracks.data.TrackEntity;
 
 import javax.inject.Inject;
@@ -15,10 +16,10 @@ import java.util.ArrayList;
 import static nl.han.oose.vdlei.spotitube.domain.db.DbConnection.connection;
 
 public class PlaylistDaoImpl implements PlaylistDao {
-  private TrackDaoImpl trackDao;
+  private TrackDao trackDao;
 
   @Inject
-  public void setTrackDao(TrackDaoImpl trackDao) {
+  public void setTrackDao(TrackDao trackDao) {
     this.trackDao = trackDao;
   }
   // private Connection connection () {

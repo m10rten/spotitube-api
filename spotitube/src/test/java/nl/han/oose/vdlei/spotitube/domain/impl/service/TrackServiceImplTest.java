@@ -2,7 +2,9 @@ package nl.han.oose.vdlei.spotitube.domain.impl.service;
 
 import nl.han.oose.vdlei.spotitube.domain.DummyData;
 import nl.han.oose.vdlei.spotitube.domain.impl.data.TrackDaoImpl;
+import nl.han.oose.vdlei.spotitube.domain.tracks.data.TrackDao;
 import nl.han.oose.vdlei.spotitube.domain.tracks.presentation.TracksResponse;
+import nl.han.oose.vdlei.spotitube.domain.tracks.service.TrackService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -16,9 +18,9 @@ import static org.mockito.Mockito.*;
 class TrackServiceImplTest {
 
     @InjectMocks
-    private TrackServiceImpl sut;
+    private TrackService sut;
     @Mock
-    private TrackDaoImpl mockedTrackDao;
+    private TrackDao mockedTrackDao;
 
     @BeforeEach
     void setUp() {
