@@ -6,4 +6,6 @@ public interface UserDao {
   boolean verifyUserWithToken(String token);
 
   void updateTokenOnLogin(String newToken, String userName);
+
+  int getId(String token);
 }

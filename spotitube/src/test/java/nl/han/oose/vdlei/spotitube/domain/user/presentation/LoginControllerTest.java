@@ -11,7 +11,8 @@ import org.mockito.internal.matchers.Not;
 import javax.ws.rs.NotAuthorizedException;
 import javax.ws.rs.core.Response;
 
-import static org.junit.jupiter.api.Assertions.*;import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class LoginControllerTest {
@@ -19,7 +20,7 @@ class LoginControllerTest {
   @InjectMocks
   private LoginController sut;
   @Mock
-  private LoginServiceImpl mockedLoginService;
+  private LoginService mockedLoginService;
 
   private static final String USER_NAME = "user1234";
   private static final String USER_PASSWORD = "password1234";
@@ -27,7 +28,7 @@ class LoginControllerTest {
   @BeforeEach
   void setUp() {
     this.sut = new LoginController();
-    this.mockedLoginService = mock(LoginServiceImpl.class);
+    this.mockedLoginService = mock(LoginService.class);
     this.sut.setLoginService(mockedLoginService);
   }
 
@@ -43,10 +44,11 @@ class LoginControllerTest {
     loginParams.setPassword("USER_PASSWORD");
     Response response = sut.loginUserEndpoint(loginParams);
 
-    assertEquals(Response.Status.FORBIDDEN.getStatusCode(), response.getStatus());
+    assertEquals(Response.Status.UNAUTHORIZED.getStatusCode(), response.getStatus());
   }
+
   @Test
-  void  loginUserEndpointCorrectCredentials(){
+  void loginUserEndpointCorrectCredentials() {
     var login = new LoginResponse();
     login.setToken("1234-1234-1235");
 

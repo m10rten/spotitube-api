@@ -23,6 +23,7 @@ class PlaylistDaoImplTest {
 
     private static final int USER_ID = 1;
     private static final int PLAYLIST_ID = 1;
+
     @BeforeEach
     void setUp() {
         this.sut = new PlaylistDaoImpl();
@@ -36,16 +37,16 @@ class PlaylistDaoImplTest {
 
     @Test
     void verifyOwnerToBeTruthy() {
-//        when(sut.verifyOwner(PLAYLIST_ID, USER_ID)).thenReturn(true);
-//        boolean act = sut.verifyOwner(PLAYLIST_ID, USER_ID);
-//        assertEquals(act, true);
+        // when(sut.verifyOwner(PLAYLIST_ID, USER_ID)).thenReturn(true);
+        // boolean act = sut.verifyOwner(PLAYLIST_ID, USER_ID);
+        // assertEquals(act, true);
     }
 
     @Test
     void verifyOwnerToBeFalsy() {
-//        when(sut.verifyOwner(anyInt(), anyInt())).thenReturn(false);
-//        boolean act = sut.verifyOwner(2, 3);
-//        assertEquals(act, false);
+        // when(sut.verifyOwner(anyInt(), anyInt())).thenReturn(false);
+        // boolean act = sut.verifyOwner(2, 3);
+        // assertEquals(act, false);
     }
 
     @Test

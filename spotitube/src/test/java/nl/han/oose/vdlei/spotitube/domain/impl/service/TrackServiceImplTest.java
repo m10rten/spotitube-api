@@ -1,12 +1,39 @@
 package nl.han.oose.vdlei.spotitube.domain.impl.service;
 
+import nl.han.oose.vdlei.spotitube.domain.DummyData;
+import nl.han.oose.vdlei.spotitube.domain.impl.data.TrackDaoImpl;
+import nl.han.oose.vdlei.spotitube.domain.tracks.presentation.TracksResponse;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+
+import javax.ws.rs.core.Response;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class TrackServiceImplTest {
 
+    @InjectMocks
+    private TrackServiceImpl sut;
+    @Mock
+    private TrackDaoImpl mockedTrackDao;
+
+    @BeforeEach
+    void setUp() {
+        this.sut = new TrackServiceImpl();
+        this.mockedTrackDao = mock(TrackDaoImpl.class);
+        sut.setTrackDao(mockedTrackDao);
+    }
+
     @Test
     void findAllTracksNotInThePlaylist() {
+        when(mockedTrackDao.getTracksNotInPlaylistFromDB(DummyData.DUMMY_PLAYLIST.getId()))
+                .thenReturn(DummyData.DUMMY_PLAYLIST.getTracks());
+        TracksResponse response = sut.findAllTracksNotInThePlaylist(DummyData.DUMMY_PLAYLIST.getId());
+        verify(mockedTrackDao).getTracksNotInPlaylistFromDB(DummyData.DUMMY_PLAYLIST.getId());
+        assertTrue(response instanceof TracksResponse);
+        assertNotNull(response);
     }
 }

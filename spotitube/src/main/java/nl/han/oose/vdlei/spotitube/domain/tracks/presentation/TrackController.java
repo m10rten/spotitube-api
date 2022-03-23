@@ -2,6 +2,8 @@ package nl.han.oose.vdlei.spotitube.domain.tracks.presentation;
 
 import nl.han.oose.vdlei.spotitube.domain.impl.data.UserDaoImpl;
 import nl.han.oose.vdlei.spotitube.domain.impl.service.TrackServiceImpl;
+import nl.han.oose.vdlei.spotitube.domain.tracks.service.TrackService;
+import nl.han.oose.vdlei.spotitube.domain.user.data.UserDao;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -11,16 +13,16 @@ import javax.ws.rs.core.Response;
 @Path("/tracks")
 public class TrackController {
 
-  private UserDaoImpl userDao;
-  private TrackServiceImpl trackService;
+  private UserDao userDao;
+  private TrackService trackService;
 
   @Inject
-  public void setUserDao(UserDaoImpl userDao) {
+  public void setUserDao(UserDao userDao) {
     this.userDao = userDao;
   }
 
   @Inject
-  public void setTrackService(TrackServiceImpl trackService) {
+  public void setTrackService(TrackService trackService) {
     this.trackService = trackService;
   }
 

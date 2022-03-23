@@ -8,6 +8,11 @@ public class PlaylistEntity {
     private int id;
     private String name;
     private boolean owner;
+
+    public void setTracks(ArrayList<TrackEntity> tracks) {
+        this.tracks = tracks;
+    }
+
     private ArrayList<TrackEntity> tracks = new ArrayList<TrackEntity>();
 
     public void setId(int id) {

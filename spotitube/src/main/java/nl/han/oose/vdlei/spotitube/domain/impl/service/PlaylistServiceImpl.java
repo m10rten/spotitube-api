@@ -3,34 +3,37 @@ package nl.han.oose.vdlei.spotitube.domain.impl.service;
 import nl.han.oose.vdlei.spotitube.domain.impl.data.PlaylistDaoImpl;
 import nl.han.oose.vdlei.spotitube.domain.impl.data.TrackDaoImpl;
 import nl.han.oose.vdlei.spotitube.domain.impl.data.UserDaoImpl;
+import nl.han.oose.vdlei.spotitube.domain.playlists.data.PlaylistDao;
 import nl.han.oose.vdlei.spotitube.domain.playlists.presentation.PlaylistRequest;
 import nl.han.oose.vdlei.spotitube.domain.playlists.presentation.PlaylistResponse;
+import nl.han.oose.vdlei.spotitube.domain.tracks.data.TrackDao;
 import nl.han.oose.vdlei.spotitube.domain.tracks.data.TrackEntity;
 import nl.han.oose.vdlei.spotitube.domain.tracks.presentation.TracksResponse;
 import nl.han.oose.vdlei.spotitube.domain.playlists.service.PlaylistService;
+import nl.han.oose.vdlei.spotitube.domain.user.data.UserDao;
 
 import javax.inject.Inject;
 
 public class PlaylistServiceImpl implements PlaylistService {
 
-  private PlaylistDaoImpl playlistDao;
+  private PlaylistDao playlistDao;
 
-  private UserDaoImpl userDao;
+  private UserDao userDao;
 
-  private TrackDaoImpl trackDao;
+  private TrackDao trackDao;
 
   @Inject
-  public void setPlaylistDao(PlaylistDaoImpl playlistDao) {
+  public void setPlaylistDao(PlaylistDao playlistDao) {
     this.playlistDao = playlistDao;
   }
 
   @Inject
-  public void setUserDao(UserDaoImpl userDao) {
+  public void setUserDao(UserDao userDao) {
     this.userDao = userDao;
   }
 
   @Inject
-  public void setTrackDao(TrackDaoImpl trackDao) {
+  public void setTrackDao(TrackDao trackDao) {
     this.trackDao = trackDao;
   }
 

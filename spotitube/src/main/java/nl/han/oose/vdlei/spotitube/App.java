@@ -1,7 +1,6 @@
 package nl.han.oose.vdlei.spotitube;
 
 import nl.han.oose.vdlei.spotitube.utils.hash.HashMethodes;
-import nl.han.oose.vdlei.spotitube.utils.json.JSONBuilder;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -23,7 +22,6 @@ public class App {
     parent.addChild(child);
     parent.addChild(child2);
 
-    System.out.println(parent.toJson());
     var hash = new HashMethodes();
 
     var hashed = hash.hash("testhashstring");

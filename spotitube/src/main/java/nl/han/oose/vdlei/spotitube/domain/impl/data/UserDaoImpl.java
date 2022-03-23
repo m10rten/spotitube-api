@@ -43,13 +43,15 @@ public class UserDaoImpl implements UserDao {
   @Override
   public boolean verifyUserWithToken(String token) throws NotAuthorizedException {
     try (Connection conn = new DbConnection().connect().getConnection()) {
-      if (token == null)
+      if (token == null) {
         throw new NotAuthorizedException("Invalid token");
+      }
       PreparedStatement statement = conn.prepareStatement("SELECT UserToken FROM Users WHERE UserToken = ?");
       statement.setString(1, token);
       ResultSet results = statement.executeQuery();
-      if (!results.next())
+      if (!results.next()) {
         throw new NotAuthorizedException("Invalid token");
+      }
       return true;
     } catch (SQLException | NotAuthorizedException e) {
       e.printStackTrace();
