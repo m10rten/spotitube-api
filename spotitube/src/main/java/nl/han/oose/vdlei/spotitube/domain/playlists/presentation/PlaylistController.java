@@ -42,7 +42,7 @@ public class PlaylistController {
     boolean hasValidToken = userDao.verifyUserWithToken(token);
     if (!hasValidToken) {
       throw new InvalidTokenException("Invalid token");
-    };
+    }
   }
 
   @Path("/")
