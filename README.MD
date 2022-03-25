@@ -19,3 +19,5 @@ spotitube is een java API gemaakt met Tomcat EE voor OOSE-DEA.
 voor het opstarten van de servers dien je de juiste dependencies geinstalleerd te hebben via maven.
 
 voor sql dien je het `init_script.sql` te runnen waarna er wat mock data in de database komt en je de database kan gebruiken.
+
+de juiste `db.properties` dient gemaakt te worden voor het verbinden met de database.
