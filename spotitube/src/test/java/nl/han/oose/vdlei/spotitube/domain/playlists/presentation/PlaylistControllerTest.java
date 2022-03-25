@@ -2,7 +2,6 @@ package nl.han.oose.vdlei.spotitube.domain.playlists.presentation;
 
 import nl.han.oose.vdlei.spotitube.domain.DummyData;
 import nl.han.oose.vdlei.spotitube.domain.playlists.data.PlaylistDao;
-import nl.han.oose.vdlei.spotitube.domain.playlists.data.PlaylistEntity;
 import nl.han.oose.vdlei.spotitube.domain.playlists.service.PlaylistService;
 import nl.han.oose.vdlei.spotitube.domain.tracks.presentation.TracksResponse;
 import nl.han.oose.vdlei.spotitube.domain.user.data.UserDao;
@@ -12,8 +11,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
 import javax.ws.rs.core.Response;
-
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;

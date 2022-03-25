@@ -2,21 +2,12 @@ package nl.han.oose.vdlei.spotitube.domain.impl.data;
 
 import nl.han.oose.vdlei.spotitube.domain.playlists.data.PlaylistDao;
 import nl.han.oose.vdlei.spotitube.domain.tracks.data.TrackDao;
-import nl.han.oose.vdlei.spotitube.domain.tracks.data.TrackEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.Mockito.*;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
-//@ExtendWith(MockitoExtension.class)
 class PlaylistDaoImplTest {
-
   @InjectMocks
   @Mock
   private PlaylistDao sut;
@@ -45,9 +36,6 @@ class PlaylistDaoImplTest {
 
   @Test
   void verifyOwnerToBeFalsy() {
-    // when(sut.verifyOwner(anyInt(), anyInt())).thenReturn(false);
-    // boolean act = sut.verifyOwner(2, 3);
-    // assertEquals(act, false);
   }
 
   @Test

@@ -2,8 +2,6 @@ package nl.han.oose.vdlei.spotitube.domain.impl.service;
 
 import nl.han.oose.vdlei.spotitube.domain.DummyData;
 import nl.han.oose.vdlei.spotitube.domain.user.data.UserDao;
-import nl.han.oose.vdlei.spotitube.domain.user.presentation.LoginResponse;
-import nl.han.oose.vdlei.spotitube.domain.user.service.LoginService;
 import nl.han.oose.vdlei.spotitube.utils.token.TokenMethodes;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
