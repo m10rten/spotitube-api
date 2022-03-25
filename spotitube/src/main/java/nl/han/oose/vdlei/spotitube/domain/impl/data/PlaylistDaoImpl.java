@@ -22,9 +22,6 @@ public class PlaylistDaoImpl implements PlaylistDao {
   public void setTrackDao(TrackDao trackDao) {
     this.trackDao = trackDao;
   }
-  // private Connection connection () {
-  // return new DbConnection().connect().getConnection();
-  // }
 
   @Override
   public int getLengthOfAllPlaylists() {

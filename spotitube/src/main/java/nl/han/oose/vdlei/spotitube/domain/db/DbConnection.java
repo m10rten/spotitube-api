@@ -1,6 +1,5 @@
 package nl.han.oose.vdlei.spotitube.domain.db;
 
-import nl.han.oose.vdlei.spotitube.utils.hash.HashMethodes;
 import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;

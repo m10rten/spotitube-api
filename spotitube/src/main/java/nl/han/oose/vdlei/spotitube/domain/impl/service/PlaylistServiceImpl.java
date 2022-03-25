@@ -1,8 +1,5 @@
 package nl.han.oose.vdlei.spotitube.domain.impl.service;
 
-import nl.han.oose.vdlei.spotitube.domain.impl.data.PlaylistDaoImpl;
-import nl.han.oose.vdlei.spotitube.domain.impl.data.TrackDaoImpl;
-import nl.han.oose.vdlei.spotitube.domain.impl.data.UserDaoImpl;
 import nl.han.oose.vdlei.spotitube.domain.playlists.data.PlaylistDao;
 import nl.han.oose.vdlei.spotitube.domain.playlists.presentation.PlaylistRequest;
 import nl.han.oose.vdlei.spotitube.domain.playlists.presentation.PlaylistResponse;

@@ -1,6 +1,5 @@
 package nl.han.oose.vdlei.spotitube.domain.impl.service;
 
-import nl.han.oose.vdlei.spotitube.domain.impl.data.UserDaoImpl;
 import nl.han.oose.vdlei.spotitube.domain.user.data.LoginEntity;
 import nl.han.oose.vdlei.spotitube.domain.user.data.UserDao;
 import nl.han.oose.vdlei.spotitube.domain.user.presentation.LoginResponse;

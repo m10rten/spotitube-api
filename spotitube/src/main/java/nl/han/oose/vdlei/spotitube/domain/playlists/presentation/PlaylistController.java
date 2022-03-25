@@ -1,9 +1,6 @@
 package nl.han.oose.vdlei.spotitube.domain.playlists.presentation;
 
 import nl.han.oose.vdlei.spotitube.domain.exceptions.InvalidTokenException;
-import nl.han.oose.vdlei.spotitube.domain.impl.data.PlaylistDaoImpl;
-import nl.han.oose.vdlei.spotitube.domain.impl.data.UserDaoImpl;
-import nl.han.oose.vdlei.spotitube.domain.impl.service.PlaylistServiceImpl;
 import nl.han.oose.vdlei.spotitube.domain.playlists.data.PlaylistDao;
 import nl.han.oose.vdlei.spotitube.domain.playlists.service.PlaylistService;
 import nl.han.oose.vdlei.spotitube.domain.tracks.data.TrackEntity;

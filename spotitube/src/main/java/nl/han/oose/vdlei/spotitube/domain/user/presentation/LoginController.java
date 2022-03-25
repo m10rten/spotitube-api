@@ -1,6 +1,5 @@
 package nl.han.oose.vdlei.spotitube.domain.user.presentation;
 
-import nl.han.oose.vdlei.spotitube.domain.impl.service.LoginServiceImpl;
 import nl.han.oose.vdlei.spotitube.domain.user.service.LoginService;
 
 import javax.inject.Inject;

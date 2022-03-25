@@ -57,7 +57,7 @@ public class TrackControllerTest {
   }
 
   @Test
-  public void getTracksNotInPlaylistEndpointEmptyTracks() {
+  public void getTracksNotInPlaylistFalseToken() {
     // arrange
     var tracks = new TracksResponse();
     when(mockedTrackService.findAllTracksNotInThePlaylist(PLAYLIST_ID)).thenReturn(tracks);
@@ -71,7 +71,7 @@ public class TrackControllerTest {
   }
 
   @Test
-  public void getTrackNotInPlaylistFilled() {
+  public void getTrackNotInPlaylistTrueTokenAndFilled() {
 //    arrange
     var tracks = new TracksResponse();
     tracks.setTracks(DummyData.DUMMY_TRACKS);
