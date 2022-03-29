@@ -1,9 +1,3 @@
-// require express 
-const express = require('express');
-
-// make app from express 
-const app = express();
-
 // require supertest 
 const supertest = require('supertest');
 
