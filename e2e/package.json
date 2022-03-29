@@ -1,0 +1,21 @@
+{
+  "name": "e2e",
+  "version": "1.0.0",
+  "description": "e2e tests voor de spotitube applicate in /spotitube",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "m10rten",
+  "license": "ISC",
+  "devDependencies": {
+    "dotenv": "^16.0.0",
+    "jest": "^27.5.1",
+    "supertest": "^6.2.2"
+  },
+  "dependencies": {
+    "express": "^4.17.3",
+    "node-fetch": "^3.2.3"
+  }
+}

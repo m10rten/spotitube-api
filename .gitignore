@@ -4,3 +4,6 @@ spotitube/.idea
 *.properties
 .idea
 spotitube/.idea
+node_modules
+e2e/package-lock.json
+.env
