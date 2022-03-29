@@ -21,3 +21,5 @@ voor het opstarten van de servers dien je de juiste dependencies geinstalleerd t
 voor sql dien je het `init_script.sql` te runnen waarna er wat mock data in de database komt en je de database kan gebruiken.
 
 de juiste `db.properties` dient gemaakt te worden voor het verbinden met de database.
+
+om de e2e te runnen: `npm install` in de e2e folder, vervolgens `npm test`.

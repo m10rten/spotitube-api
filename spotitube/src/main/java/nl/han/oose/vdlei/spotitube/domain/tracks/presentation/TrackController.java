@@ -43,7 +43,7 @@ public class TrackController {
       TracksResponse tracks = trackService.findAllTracksNotInThePlaylist(playlistId);
       return Response.status(Response.Status.OK).entity(tracks).build();
     } catch (InvalidTokenException e) {
-      return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).build();
+      return Response.status(Response.Status.UNAUTHORIZED).encoding(e.getMessage()).build();
     }
   }
 }

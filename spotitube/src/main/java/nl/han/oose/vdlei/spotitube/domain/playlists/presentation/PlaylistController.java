@@ -52,7 +52,7 @@ public class PlaylistController {
       PlaylistResponse playlistResponse = playlistService.findAllPlaylists(token);
       return Response.status(Response.Status.OK).entity(playlistResponse).build();
     } catch (InvalidTokenException e) {
-      return Response.status(Response.Status.FORBIDDEN).entity(e.getMessage()).build();
+      return Response.status(Response.Status.FORBIDDEN).encoding(e.getMessage()).build();
     }
   }
 
@@ -66,7 +66,7 @@ public class PlaylistController {
       PlaylistResponse response = playlistService.postNewPlaylistAndReturnAll(token, newPlaylist);
       return Response.status(Response.Status.CREATED).entity(response).build();
     } catch (InvalidTokenException e) {
-      return Response.status(Response.Status.FORBIDDEN).entity(e.getMessage()).build();
+      return Response.status(Response.Status.FORBIDDEN).encoding(e.getMessage()).build();
     }
   }
 
@@ -82,7 +82,7 @@ public class PlaylistController {
       PlaylistResponse remainingPlaylists = playlistService.deletePlaylistWithId(playlistId, token);
       return Response.status(Response.Status.OK).entity(remainingPlaylists).build();
     } catch (InvalidTokenException | NotAuthorizedException e) {
-      return Response.status(Response.Status.FORBIDDEN).entity(e.getMessage()).build();
+      return Response.status(Response.Status.FORBIDDEN).encoding(e.getMessage()).build();
     }
   }
 
@@ -100,7 +100,7 @@ public class PlaylistController {
       PlaylistResponse playlists = playlistService.editPlaylistAndReturnAllService(token, playlist);
       return Response.status(Response.Status.OK).entity(playlists).build();
     } catch (InvalidTokenException e) {
-      return Response.status(Response.Status.FORBIDDEN).entity(e.getMessage()).build();
+      return Response.status(Response.Status.FORBIDDEN).encoding(e.getMessage()).build();
     }
   }
 
@@ -114,7 +114,7 @@ public class PlaylistController {
       TracksResponse response = playlistService.getTracksFromPlaylist(playlistId);
       return Response.status(Response.Status.OK).entity(response).build();
     } catch (InvalidTokenException e) {
-      return Response.status(Response.Status.FORBIDDEN).entity(e.getMessage()).build();
+      return Response.status(Response.Status.FORBIDDEN).encoding(e.getMessage()).build();
     }
   }
 
@@ -129,7 +129,7 @@ public class PlaylistController {
       TracksResponse tracks = playlistService.postNewTrackInPlaylistService(playlistId, track);
       return Response.status(Response.Status.OK).entity(tracks).build();
     } catch (InvalidTokenException e) {
-      return Response.status(Response.Status.FORBIDDEN).entity(e.getMessage()).build();
+      return Response.status(Response.Status.FORBIDDEN).encoding(e.getMessage()).build();
     }
   }
 
@@ -144,7 +144,7 @@ public class PlaylistController {
       TracksResponse tracks = playlistService.deleteTrackInPlaylistService(playlistId, trackId);
       return Response.status(Response.Status.OK).entity(tracks).build();
     } catch (InvalidTokenException e) {
-      return Response.status(Response.Status.FORBIDDEN).entity(e.getMessage()).build();
+      return Response.status(Response.Status.FORBIDDEN).encoding(e.getMessage()).build();
     }
   }
 }
