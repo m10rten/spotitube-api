@@ -5,5 +5,5 @@ spotitube/.idea
 .idea
 spotitube/.idea
 node_modules
-e2e/package-lock.json
+tests/package-lock.json
 .env
