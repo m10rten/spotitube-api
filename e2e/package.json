@@ -12,9 +12,11 @@
   "devDependencies": {
     "dotenv": "^16.0.0",
     "jest": "^27.5.1",
+    "puppeteer": "^13.5.1",
     "supertest": "^6.2.2"
   },
   "dependencies": {
+    "cypress": "^9.5.3",
     "express": "^4.17.3",
     "node-fetch": "^3.2.3"
   }
