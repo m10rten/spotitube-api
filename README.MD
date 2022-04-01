@@ -23,3 +23,6 @@ voor sql dien je het `init_script.sql` te runnen waarna er wat mock data in de d
 de juiste `db.properties` dient gemaakt te worden voor het verbinden met de database.
 
 om de e2e te runnen: `npm install` in de e2e folder, vervolgens `npm test`.
+
+In de `tests` folder vind je de code voor het onderzoek.
+Het bijbehorende .pdf staat in `docs`.
