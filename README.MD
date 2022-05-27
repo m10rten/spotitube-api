@@ -26,3 +26,6 @@ om de e2e te runnen: `npm install` in de e2e folder, vervolgens `npm test`.
 
 In de `tests` folder vind je de code voor het onderzoek.
 Het bijbehorende .pdf staat in `docs`.
+
+In de `docs` folder staat de nieuwe versie van het onderzoeksrapport voor de herkansing: DEA.
+In de `src` test folder staat de folder `research` met daarin een deel van de code voor het onderzoek: herkansing.
